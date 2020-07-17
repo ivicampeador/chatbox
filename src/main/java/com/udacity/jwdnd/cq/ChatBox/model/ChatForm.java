@@ -1,13 +1,10 @@
 
 package com.udacity.jwdnd.cq.ChatBox.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class ChatForm {
 
+	private String userName;
 	private String messageText;
-	private String username;
 	private String messageType;
 
 	public String getMessageText() {
@@ -18,12 +15,12 @@ public class ChatForm {
 		this.messageText = messageText;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getMessageType() {

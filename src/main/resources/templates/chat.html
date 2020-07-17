@@ -1,21 +1,46 @@
-<html>
-<head></head>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat</title>
+</head>
 <body>
-	<form action="#" th:action="@{'/chat'}" th:objects="${chatForm}"
-		method="POST">
-		<label for="username">Username:</label> <input id="username"
-			type="text" name="username" th:field="*{animalName}"> <label
-			for="messageText">MessageText:</label> <input id="messageText"
-			type="text" name="messageText" th:field="*{messageText}"> <label
-			for="messageType">MessageType: </label> <select id="messageType"
-			name="messageType" th:field="*{messageType}">
-			<option selected>Say</option>
-			<option>Shout</option>
-			<option>Whisper</option>
-		</select> <input type="submit">
-	</form>
-	<h1 th:unless="${#lists.size(theChat) > 100}"
-		th:each="msg : ${theChat}" th:text="${msg}">Hello, homepage!</h1>
-	<h1 th:if="${#lists.size(theChat) > 100}">I think that's enough!</h1>
-</body>
+<form th:object="${ChatForm}" action="#" th:action="@{/chat}" method="POST">
+    <label for="username">Username:</label>
+    <input id="username" type="text" th:field="*{userName}">
+    <label for="messageText">Message Text:</label>
+    <input id="messageText" type="text" th:field="*{messageText}">
+    <label for="messageType">Message Type: </label>
+    
+    <select id="messageType" name="messageType" th:field="*{messageType}">
+        <option
+            value="Say" selected="selected"
+        >Say</option>
+        <option
+            value="Whisper"
+        >Whisper</option>
+        <option
+            value="Shout"
+        >Shout</option>
+    </select>
+    <!--  
+    <select id="messageType" th:field="*{messageType}">
+        <option
+            th:each="type : ${allMessageTypes}"
+            th:value="${type}"
+            th:text="${type}"
+        >
+            Say
+        </option>
+    </select>-->
+    <input type="submit">
+</form>
+      <div th:each="msg : ${messages}">
+         <span th:text="${msg.sender}">Username</span>: <span
+            th:text="${msg.message}">Hello, world!</span>
+      </div>
+   </body>
 </html>
